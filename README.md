@@ -1,40 +1,48 @@
-# L3 Informatique -- Framework Web 2
+## le port: http://localhost:8020/
 
-## Adaptation du fichier docker-compose.yml
+docker-compose up -d
+docker exec -it puzzle_container bash
+//to clear docker: docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -aq)
+docker volume prune -f
 
-Il faut modifier les lignes suivantes dans docker-compose.yml :
-
-- USERNAME est votre nom d'utilisateur
-- UID votre identifiant utilisateur
-- MAIL
-- NAME
-
-On obtient les deux premières informations en exécutant la commande "id" dans un terminal du système hôte.
-
-Exemple: 
-
-    args:
-      USERNAME: frederic.loulergue
-      UID: 11688
-      MAIL: frederic.loulergue@univ-orleans.fr
-      NAME: "Frédéric Loulergue"
-
-Il est également conseillé de personnaliser le nom du container. Dans cette version (voir docker-compose.yml), j'ai appelé le container : container-fw2-tp-bidule
-
-## Démarrage
-
-L'utilisation est:
-
-    docker-compose build
+## pour chaque lancement de serveur 
     docker-compose up -d
     docker attach puzzle_container
-    sudo apt update
+    ng serve --host 0.0.0.0 &
+    //(ng serve ) pour la premiere fois
+    
 
 
-## pour chaque lancement de serveur
-    docker-compose up -d
-    docker attach puzzle_container
+## 1. Initialisation du dépôt Git 
+mkdir puzzle_game
+cd puzzle_game
+git init
 
-## Creation de projet
-ng new puzzle
-ng serve: pour demarer le serveur
+## 2. Configuration du front-end Angular
+npm install -g @angular/cli
+ng new puzzle_frontend --routing --style=scss
+
+## 3. Configuration du back-end Symfony
+symfony new puzzle_backend 
+symfony composer require symfony/orm-pack
+symfony composer require --dev symfony/maker-bundle
+symfony composer require symfony/serializer-pack
+// pour que ne pas oublier d'ajouter les style d'ecriture qu'on a fait en tp
+
+## 4. Création des entités
+symfony console make:entity Utilisateur
+symfony console make:entity Puzzle
+symfony console make:entity Partie
+
+
+symfony console make:controller GameController
+
+
+
+
+## 5. Création des migrations et mise à jour de la base de données
+symfony console make:migration
+symfony console doctrine:migrations:migrate\
+
