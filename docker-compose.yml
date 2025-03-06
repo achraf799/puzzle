@@ -1,0 +1,22 @@
+services:
+  puzzel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: achraf
+        UID: 22407250
+        MAIL: mouhhammed-achraf.boudiaf@univ-orleans.fr
+        NAME: "Achraf Boudiaf"
+    container_name: puzzle_container
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+    volumes:
+    - .:/var/www/html
+    ports:
+    - "8000:8000"
+    - "8020:4200"
+    environment:
+      PHP_IDE_CONFIG: serverName=contacts
+      PS1: "[ $$(whoami) | $$(pwd) ] "
