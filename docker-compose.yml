@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  framework-web-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: achraf
+        UID: 1002
+        MAIL: mohammed-achraf.boudiaf@etu.univ-orleans.fr
+        NAME: "BOUDAIF Achraf"
+    container_name: puzzle_container
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:8000" # Symfony
+      - "8020:4200" # Angular
+    environment:
+      PHP_IDE_CONFIG: serverName=contacts
+      PS1: "[ $$(whoami) | $$(pwd) ] "
+      DATABASE_URL: "postgresql://achraf:password@db:5432/creacosm?serverVersion=17&charset=utf8"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: achraf
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: creacosm
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
