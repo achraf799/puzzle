@@ -1,0 +1,27 @@
+<div class="accueil-container">
+  <mat-card class="accueil-card">
+    <mat-card-header>
+      <mat-card-title class="accueil-title"><h1 style="text-align: center; font-size: 150%;">Escape Game : Crea Cosm</h1></mat-card-title>
+      <mat-card-subtitle class="accueil-subtitle">Résolvez les énigmes et testez votre logique !</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <h2 class="accueil-section-title">Règles du jeu</h2>
+      <ul class="accueil-rules">
+        <li>Trois puzzles de difficulté croissante.</li>
+        <li>Deux minutes par puzzle pour le résoudre.</li>
+        <li>Échec si le temps est dépassé.</li>
+      </ul>
+      <h2 class="accueil-section-title">Votre mission</h2>
+      <p>
+        Résoudre 3 puzzles de difficulté croissante en moins de 2 minutes chacun.
+      </p>
+      <p>
+        Êtes-vous prêt à relever le défi ?
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="accueil-actions">
+      <button mat-raised-button color="primary" [routerLink]="'/puzzle1'">Jouer au puzzle</button>
+      <button mat-raised-button color="accent" [routerLink]="'/puzzle1'">Puzzle 1 (test)</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -10,7 +10,7 @@ services:
         UID: 1002
         MAIL: mohammed-achraf.boudiaf@etu.univ-orleans.fr
         NAME: "BOUDAIF Achraf"
-    container_name: puzzle_container
+    container_name: puzzle2
     command: /bin/bash
     tty: true
     stdin_open: true
@@ -28,7 +28,7 @@ services:
 
   db:
     image: postgres:17
-    container_name: postgres_container
+    container_name: postgres_container2
     restart: always
     environment:
       POSTGRES_USER: achraf
