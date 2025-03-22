@@ -70,4 +70,34 @@ class Partie
 
         return $this;
     }
+
+    #[ORM\ManyToOne(targetEntity: Puzzle::class)]
+#[ORM\JoinColumn(nullable: false)]
+private ?Puzzle $puzzle = null;
+
+#[ORM\Column(type: "integer", nullable: true)]
+private ?int $score = null;
+
+public function getPuzzle(): ?Puzzle
+{
+    return $this->puzzle;
+}
+
+public function setPuzzle(?Puzzle $puzzle): static
+{
+    $this->puzzle = $puzzle;
+    return $this;
+}
+
+public function getScore(): ?int
+{
+    return $this->score;
+}
+
+public function setScore(?int $score): static
+{
+    $this->score = $score;
+    return $this;
+}
+
 }

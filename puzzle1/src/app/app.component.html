@@ -1,0 +1,32 @@
+<div class="puzzle-container">
+  <!-- Afficher le temps restant -->
+  <div class="timer">
+    Temps restant : {{ timeLeft }} secondes
+  </div>
+
+  <!-- Grille pour les pièces non placées -->
+  <div class="unplaced-grid">
+    <div *ngFor="let piece of unplacedPieces" class="piece" (click)="selectPiece(piece)">
+      <img [src]="piece.image" alt="Puzzle Piece">
+    </div>
+  </div>
+
+  <!-- Grille pour le puzzle -->
+  <div class="grid-container">
+    <div *ngFor="let cell of puzzleGrid; let index = index"
+         class="grid-cell"
+         (click)="placePiece(index)">
+      <div *ngIf="cell !== null">
+        <img [src]="getPieceImage(cell)" alt="Placed Piece">
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="reset-button" (click)="shufflePieces()">Réinitialiser le puzzle</button>
+  </div>
+
+  <div *ngIf="isPuzzleSolved" class="success-message">
+    Félicitations ! Vous avez terminé le puzzle.
+  </div>
+</div>

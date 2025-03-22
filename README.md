@@ -66,11 +66,17 @@ host    all             all             172.26.0.0/16           md5
 
 ##  ----------------------------README COMMENCE ICI------------------------------------
 
-# 1.Docker:
+# 0.Docker:
 docker compose build
 docker compose up -d
 docker attach puzzle_container
 
+# 1.Github:
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/achraf799/puzzle.git
+git push -u origin main
 # 2.Initialisation de backend:
 symfony new backend 
 cd backend
@@ -94,3 +100,16 @@ symfony console make:entity Puzzle
 symfony console make:entity Partie
 symfony console make:migration
 symfony console doctrine:migrations:migrate
+
+# 6.Creation des controlleurs
+symfony console make:controller PartieController
+
+
+# 7.Frontend (Angular)
+2.1 - Créer les composants
+
+ng generate component components/menu
+ng generate component components/game
+ng generate component components/score
+
+ng generate service services/game

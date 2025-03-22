@@ -18,7 +18,7 @@ services:
       - .:/var/www/html
     ports:
       - "8000:8000" # Symfony
-      - "8020:4200" # Angular
+      - "8020:8020" # Angular
     environment:
       PHP_IDE_CONFIG: serverName=contacts
       PS1: "[ $$(whoami) | $$(pwd) ] "
