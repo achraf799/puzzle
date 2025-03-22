@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PuzzleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PuzzleRepository::class)]
+#[ApiResource]
 class Puzzle
 {
     #[ORM\Id]
@@ -13,44 +15,22 @@ class Puzzle
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $niveau = null;
+    #[ORM\Column(length: 255)]
+    private ?string $Niveau = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(?int $id): static
+    public function getNiveau(): ?string
     {
-        $this->id = $id;
-
-        return $this;
+        return $this->Niveau;
     }
 
-    public function getImage(): ?string
+    public function setNiveau(string $Niveau): static
     {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getNiveau(): ?int
-    {
-        return $this->niveau;
-    }
-
-    public function setNiveau(?int $niveau): static
-    {
-        $this->niveau = $niveau;
+        $this->Niveau = $Niveau;
 
         return $this;
     }
